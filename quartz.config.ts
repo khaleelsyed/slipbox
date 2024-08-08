@@ -15,6 +15,7 @@ const config: QuartzConfig = {
     baseUrl: "slipbox.khaleel.dev",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
+    analytics: null,
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
