@@ -63,7 +63,7 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       lightningcss:
-        specifier: ^1.25.1
+        specifier: ^1.26.0
         version: 1.26.0
       mdast-util-find-and-replace:
         specifier: ^3.0.1
