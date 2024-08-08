@@ -214,7 +214,7 @@ importers:
         specifier: ^4.16.2
         version: 4.16.5
       typescript:
-        specifier: ^5.5.3
+        specifier: ^5.5.4
         version: 5.5.4
 
 packages:
