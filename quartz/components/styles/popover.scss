@@ -27,7 +27,7 @@
     opacity 0.3s ease,
     visibility 0.3s ease;
 
-  &>.popover-inner {
+  & > .popover-inner {
     position: relative;
     width: 30rem;
     max-height: 20rem;
@@ -45,8 +45,7 @@
     white-space: normal;
   }
 
-  &>.popover-inner[data-content-type] {
-
+  & > .popover-inner[data-content-type] {
     &[data-content-type*="pdf"],
     &[data-content-type*="image"] {
       padding: 0;
