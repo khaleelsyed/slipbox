@@ -11,7 +11,7 @@ export const sharedPageComponents: SharedLayout = {
   footer: Component.Footer({
     links: {
       "Personal Landing Page": "https://khaleel.dev",
-      "GitHub": "https://github.com/khaleelsyed",
+      GitHub: "https://github.com/khaleelsyed",
     },
   }),
 }
@@ -29,27 +29,33 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer({
-      filterFn: (node: FileNode) => {
-        const omit = new Set(["references"])
-        return !omit.has(node.name.toLowerCase())
-      },
-    })),
+    Component.DesktopOnly(
+      Component.Explorer({
+        filterFn: (node: FileNode) => {
+          const omit = new Set(["references"])
+          return !omit.has(node.name.toLowerCase())
+        },
+      }),
+    ),
   ],
   right: [
     Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
   ],
-  afterBody: [Component.RecentNotes({
-    showTags: false, limit: 5, filter: (f: QuartzPluginData) => {
-      if (f.slug?.split("/")[0] === "slipbox") {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  })],
+  afterBody: [
+    Component.RecentNotes({
+      showTags: false,
+      limit: 5,
+      filter: (f: QuartzPluginData) => {
+        if (f.slug?.split("/")[0] === "slipbox") {
+          return true
+        } else {
+          return false
+        }
+      },
+    }),
+  ],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
