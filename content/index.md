@@ -12,7 +12,7 @@ The goal is to have notes that are as atomic as possible - the notes have been w
 
 Notes can be connected using an idea compass for an _atomic idea `X`_
 
-- Where does _`X`_ come from?
-- Where does _`X`_ lead?
-- What's opposite of _`X`_?
-- What's similar to _`X`_?
+- Where does _X_ come from?
+- Where does _X_ lead?
+- What's opposite of _X_?
+- What's similar to _X_?
