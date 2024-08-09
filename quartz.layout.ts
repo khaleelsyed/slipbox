@@ -1,5 +1,7 @@
+import { FileNode } from "./quartz/components/ExplorerNode"
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import { QuartzPluginData } from "./quartz/plugins/vfile"
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -27,13 +29,27 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+    Component.DesktopOnly(Component.Explorer({
+      filterFn: (node: FileNode) => {
+        const omit = new Set(["references"])
+        return !omit.has(node.name.toLowerCase())
+      },
+    })),
   ],
   right: [
     Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
   ],
+  afterBody: [Component.RecentNotes({
+    showTags: false, limit: 5, filter: (f: QuartzPluginData) => {
+      if (f.slug?.split("/")[0] === "slipbox") {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  })],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
@@ -47,4 +63,5 @@ export const defaultListPageLayout: PageLayout = {
     Component.DesktopOnly(Component.Explorer()),
   ],
   right: [],
+  afterBody: [],
 }
