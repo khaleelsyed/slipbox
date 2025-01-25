@@ -1,9 +1,12 @@
 name: Deploy site to GitHub Pages
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Build and Test", "Check markdown files"]
     branches:
       - main
+    types:
+      - completed
 
 permissions:
   contents: read
