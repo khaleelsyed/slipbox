@@ -1,0 +1,27 @@
+name: Check markdown files
+
+on:
+  # pull_request:
+  #   branches:
+  #     - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: "./markdown_check/go.mod"
+
+      - name: Build
+        run: go build -C markdown_check/ -v -o ../md_check
+
+      - name: Test logic
+        run: go test -C markdown_check/ -v
+
+      - name: Check content files
+        run: ./md_check
