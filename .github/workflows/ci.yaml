@@ -37,9 +37,6 @@ jobs:
 
       - run: npm ci
 
-      - name: Apply prettier on markdown `content/` directory
-        run: npx prettier ./content/ --write
-
       - name: Check types and style
         run: npm run check
 

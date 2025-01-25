@@ -1,0 +1,11 @@
+version: "3"
+
+tasks:
+  build:
+    cmds:
+      - go build -C markdown_check/ -o ../md_check
+
+  run:
+    cmds:
+      - task: build
+      - ./md_check
