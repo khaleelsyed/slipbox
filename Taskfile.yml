@@ -1,11 +1,11 @@
-version: '3'
+version: "3"
 
 tasks:
   build:
     cmds:
       - go build -C markdown_check/ -o ../md_check
-  
-  run: 
+
+  run:
     cmds:
       - task: build
       - ./md_check
