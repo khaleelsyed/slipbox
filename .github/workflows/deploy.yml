@@ -2,7 +2,7 @@ name: Deploy site to GitHub Pages
 
 on:
   workflow_run:
-    workflows: ["Check markdown files"]
+    workflows: ["Build and Test"]
     branches:
       - main
     types:
