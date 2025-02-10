@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"regexp"
 	"strings"
 )
 
@@ -58,6 +59,11 @@ func checkSyncConflicts(directoryPath string) ([]string, error) {
 }
 
 func reportUnusedReferences(directoryPath string) error {
+	r, err := regexp.Compile("title: .+[^\n]")
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	files, err := os.ReadDir(directoryPath)
 	if err != nil {
 		return err
@@ -75,15 +81,17 @@ func reportUnusedReferences(directoryPath string) error {
 		if err != nil {
 			return err
 		}
+
 		if strings.Contains(string(fileContents), matchString) {
-			unusedReferenceFiles = append(unusedReferenceFiles, file.Name())
+			title := strings.TrimLeft(r.FindString(string(fileContents)), "title:")
+			unusedReferenceFiles = append(unusedReferenceFiles, fmt.Sprintf("%s - %s", file.Name(), title))
 		}
 	}
 
 	if len(unusedReferenceFiles) > 0 {
 		fmt.Println("Unused reference files:")
 		for _, file := range unusedReferenceFiles {
-			fmt.Printf("%s%s\n", directoryPath, file)
+			fmt.Println(file)
 		}
 	}
 	return nil
