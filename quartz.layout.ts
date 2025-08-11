@@ -1,7 +1,5 @@
-import { FileNode } from "./quartz/components/ExplorerNode"
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
-import { QuartzPluginData } from "./quartz/plugins/vfile"
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -10,8 +8,8 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [],
   footer: Component.Footer({
     links: {
-      "Personal Landing Page": "https://khaleel.dev",
-      GitHub: "https://github.com/khaleelsyed",
+      GitHub: "https://github.com/jackyzha0/quartz",
+      "Discord Community": "https://discord.gg/cRFFHYye7t",
     },
   }),
 }
@@ -19,7 +17,10 @@ export const sharedPageComponents: SharedLayout = {
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
-    Component.Breadcrumbs(),
+    Component.ConditionalRender({
+      component: Component.Breadcrumbs(),
+      condition: (page) => page.fileData.slug !== "index",
+    }),
     Component.ArticleTitle(),
     Component.ContentMeta(),
     Component.TagList(),
@@ -27,26 +28,22 @@ export const defaultContentPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
-    Component.Search(),
-    Component.Darkmode(),
+    Component.Flex({
+      components: [
+        {
+          Component: Component.Search(),
+          grow: true,
+        },
+        { Component: Component.Darkmode() },
+        { Component: Component.ReaderMode() },
+      ],
+    }),
+    Component.Explorer(),
   ],
   right: [
     Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
-  ],
-  afterBody: [
-    Component.RecentNotes({
-      showTags: false,
-      limit: 5,
-      filter: (f: QuartzPluginData) => {
-        if (f.slug?.split("/")[0] === "slipbox") {
-          return true
-        } else {
-          return false
-        }
-      },
-    }),
   ],
 }
 
@@ -56,10 +53,16 @@ export const defaultListPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
-    Component.Search(),
-    Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+    Component.Flex({
+      components: [
+        {
+          Component: Component.Search(),
+          grow: true,
+        },
+        { Component: Component.Darkmode() },
+      ],
+    }),
+    Component.Explorer(),
   ],
   right: [],
-  afterBody: [],
 }
