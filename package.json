@@ -1,15 +1,15 @@
 {
-  "name": "@jackyzha0/quartz",
-  "description": "🌱 publish your digital garden and notes as a website",
+  "name": "@khaleelsyed/slipbox",
+  "description": "Knowledge system that uses the Zettelkasten method.",
   "private": true,
   "version": "4.5.1",
   "type": "module",
-  "author": "jackyzha0 <j.zhao2k19@gmail.com>",
+  "author": "khaleelsyed",
   "license": "MIT",
-  "homepage": "https://quartz.jzhao.xyz",
+  "homepage": "https://slipbox.khaleel.dev",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jackyzha0/quartz.git"
+    "url": "https://github.com/khaleelsyed/slipbox.git"
   },
   "scripts": {
     "quartz": "./quartz/bootstrap-cli.mjs",
@@ -40,6 +40,8 @@
     "@myriaddreamin/rehype-typst": "^0.6.0",
     "@napi-rs/simple-git": "0.1.21",
     "@tweenjs/tween.js": "^25.0.0",
+    "@types/mdast": "^4.0.4",
+    "@types/unist": "^3.0.3",
     "ansi-truncate": "^1.2.0",
     "async-mutex": "^0.5.0",
     "chokidar": "^4.0.3",
