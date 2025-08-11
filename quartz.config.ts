@@ -8,16 +8,14 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
-    pageTitleSuffix: "",
+    pageTitle: "Knowledge System",
+    pageTitleSuffix: " | Knowledge System",
     enableSPA: true,
     enablePopovers: true,
-    analytics: {
-      provider: "plausible",
-    },
+    analytics: null,
     locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    baseUrl: "slipbox.khaleel.dev",
+    ignorePatterns: ["private", "templates", ".obsidian", "blog posts"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",

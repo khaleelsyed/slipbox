@@ -3,4 +3,4 @@ node_modules
 .quartz-cache
 
 # Ignore all HTML files:
-slipbox/
+content/

@@ -1,5 +1,6 @@
-import { PageLayout, SharedLayout } from "./quartz/cfg"
+import { PageLayout, SharedLayout, ListPageLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import { QuartzPluginData } from "./quartz/plugins/vfile"
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -8,8 +9,8 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/jackyzha0/quartz",
-      "Discord Community": "https://discord.gg/cRFFHYye7t",
+      "Personal Landing Page": "https://khaleel.dev/",
+      GitHub: "https://github.com/khaleelsyed",
     },
   }),
 }
@@ -40,6 +41,19 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.Explorer(),
   ],
+  afterBody: [
+    Component.RecentNotes({
+      showTags: false,
+      limit: 5,
+      filter: (f: QuartzPluginData) => {
+        if (f.slug?.split("/")[0] === "slipbox") {
+          return true
+        } else {
+          return false
+        }
+      },
+    }),
+  ],
   right: [
     Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
@@ -48,7 +62,7 @@ export const defaultContentPageLayout: PageLayout = {
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
-export const defaultListPageLayout: PageLayout = {
+export const defaultListPageLayout: ListPageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
   left: [
     Component.PageTitle(),
